@@ -17,8 +17,7 @@ dragon_loot = [
 
 def display_inventory(inventory):
     # change header for display_inventory function
-    """Check the inventory of a player and provides weight/speed dependency status
-    """
+    """Check the inventory of a player and provides weight/speed dependency status."""
     print("Inventory:")
     item_total = 0
 
@@ -43,13 +42,12 @@ def display_inventory(inventory):
 
 
 def add_to_inventory(inventory, added_items):
-    """Add to inventory:
+    """Add to inventory.
 
     - Adds new items to inventory of a player
     - Checks input items for trash
     - Provides information on skipped added iteams
     """
-
     skipped = {}
     # add implementation of defaultdict for skipped dict
     skipped = defaultdict(int)
