@@ -10,9 +10,7 @@ UNWANTED_ITEMS = ['rubbish', 'chewed gum', 'used tissue']
 stuff = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 
 dragon_loot = [
-
     'gold coin', 'chewed gum', 'dagger', 'gold coin', 'gold coin', 'ruby',
-
     'rubbish', 'chewed gum', 'used tissue']
 
 
