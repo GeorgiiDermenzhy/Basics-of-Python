@@ -19,12 +19,9 @@ def display_inventory(inventory):
     item_total = 0
 
     print("Inventory:")
-
     for item_name, item_count in inventory.items():
-
         print(item_name, item_count)
-
-        item_total += 1
+        item_total += item_count
 
     print("Total number of items: " + str(item_total))
 
@@ -66,7 +63,6 @@ def add_to_inventory(inventory, added_items):
     print(f"Added {added_items_counter} items to the inventory")
 
     print("Skipped:")
-
     for item_name, item_count in skipped.items():
         print(item_name, item_count)
     print("===============")
