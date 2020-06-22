@@ -44,7 +44,6 @@ def add_to_inventory(inventory, added_items):
     - Checks input items for unwanted_items
     - Provides information on skipped added iteams
     """
-    skipped = {}
 
     skipped = defaultdict(int)
 
