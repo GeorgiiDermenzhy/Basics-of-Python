@@ -17,43 +17,43 @@ def sandwich_maker():
     sandwich's ingredients;
     order's price
     """
-    while True:
+    bread_type = pyip.inputMenu(list(BREAD.keys()))
+    sandwich_price = BREAD[bread_type]
+    sandwich_ingredients.append(bread_type)
 
-        bread_type = pyip.inputMenu(['wheat', 'white', 'sourdough'])
-        sandwich_price = BREAD[bread_type]
-        sandwich_ingredients.append(bread_type)
+    protein_type = pyip.inputMenu(['chicken', 'turkey', 'ham', 'tofu'])
+    sandwich_price += PROTEIN[protein_type]
+    sandwich_ingredients.append(protein_type)
 
-        protein_type = pyip.inputMenu(['chicken', 'turkey', 'ham', 'tofu'])
-        sandwich_price = PROTEIN[protein_type] + sandwich_price
-        sandwich_ingredients.append(protein_type)
+    optional_cheese = pyip.inputYesNo(
+        prompt="Would you like to add cheese?\n",
+        caseSensitive=False)
+    if optional_cheese == "yes":
+        cheese_type = pyip.inputMenu(['cheddar', 'Swiss', 'mozzarella'])
+        sandwich_price += CHEESE[cheese_type]
+        sandwich_ingredients.append(cheese_type)
 
-        optional_cheese = pyip.inputYesNo(
-            prompt="Would you like to add cheese?\n",
-            caseSensitive=False)
-        if optional_cheese == "yes":
-            cheese_type = pyip.inputMenu(['cheddar', 'Swiss', 'mozzarella'])
-            sandwich_price = CHEESE[cheese_type] + sandwich_price
-            sandwich_ingredients.append(cheese_type)
+    optional_sauce = pyip.inputYesNo(
+        prompt="Would you like to add sauce?\n",
+        caseSensitive=False)
+    if optional_sauce == "yes":
+        sauce_type = pyip.inputMenu(['mayo', 'mustard',
+                                     'lettuce', 'tomato'])
+        sandwich_price += SAUCE[sauce_type]
+        sandwich_ingredients.append(sauce_type)
 
-        optional_sauce = pyip.inputYesNo(
-            prompt="Would you like to add sauce?\n",
-            caseSensitive=False)
-        if optional_sauce == "yes":
-            sauce_type = pyip.inputMenu(['mayo', 'mustard',
-                                         'lettuce', 'tomato'])
-            sandwich_price = SAUCE[sauce_type] + sandwich_price
-            sandwich_ingredients.append(sauce_type)
+    # don't like how it looks like, but this is what
+    # pylint and flake8 advised me to do:
+    number_of_sandwiches = pyip.inputInt(min=1,
+                                         prompt="How many sandwiches would "
+                                                "you like to buy?\n")
 
-        number_of_sandwiches = pyip.inputInt(
-            prompt="How many sandwiches would you like to buy?\n")
-        sandwich_price = "{:.2f}".format(sandwich_price * number_of_sandwiches)
+    total_price = sandwich_price * number_of_sandwiches
 
-        print(
-            "Your sandwich consists of " + ', '.join(sandwich_ingredients)
-            + f". You wanted {number_of_sandwiches} sandwich(es). "
-              f"That's a total of {sandwich_price} kg of gold")
-
-        break
+    print(
+        f"Your sandwich consists of {', '.join(sandwich_ingredients)}"
+        f". You wanted {number_of_sandwiches} sandwich(es). "
+        f"That's a total of {total_price:.3f} kg of gold")
 
 
 sandwich_maker()
