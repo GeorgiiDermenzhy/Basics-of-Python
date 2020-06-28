@@ -21,7 +21,7 @@ def sandwich_maker():
     sandwich_price = BREAD[bread_type]
     sandwich_ingredients.append(bread_type)
 
-    protein_type = pyip.inputMenu(['chicken', 'turkey', 'ham', 'tofu'])
+    protein_type = pyip.inputMenu(list(PROTEIN.keys()))
     sandwich_price += PROTEIN[protein_type]
     sandwich_ingredients.append(protein_type)
 
@@ -29,7 +29,7 @@ def sandwich_maker():
         prompt="Would you like to add cheese?\n",
         caseSensitive=False)
     if optional_cheese == "yes":
-        cheese_type = pyip.inputMenu(['cheddar', 'Swiss', 'mozzarella'])
+        cheese_type = pyip.inputMenu(list(CHEESE.keys()))
         sandwich_price += CHEESE[cheese_type]
         sandwich_ingredients.append(cheese_type)
 
@@ -37,8 +37,7 @@ def sandwich_maker():
         prompt="Would you like to add sauce?\n",
         caseSensitive=False)
     if optional_sauce == "yes":
-        sauce_type = pyip.inputMenu(['mayo', 'mustard',
-                                     'lettuce', 'tomato'])
+        sauce_type = pyip.inputMenu(list(SAUCE.keys()))
         sandwich_price += SAUCE[sauce_type]
         sandwich_ingredients.append(sauce_type)
 
