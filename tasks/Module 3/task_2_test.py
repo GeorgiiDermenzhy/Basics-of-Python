@@ -5,7 +5,7 @@ import pytest
 
 
 def my_splitter(to_split, separator=None):
-    """Create personal str.split() implementation with UnitTest."""
+    """Split string with provided separator."""
     if separator is None:
         split_list_regex = re.compile(r'[^\s]+')
         return split_list_regex.findall(to_split)
@@ -13,18 +13,15 @@ def my_splitter(to_split, separator=None):
     split_list = []
     separator_len = len(separator)
 
-    for i in to_split:
-        if separator in to_split:
-            separators_location = to_split.find(separator, 0, -1)
-            separated_word = to_split[:separators_location]
-            split_list.append(separated_word)
-            to_split = to_split[separators_location + separator_len:]
-        else:
-            separated_word = to_split[:len(to_split)]
-            split_list.append(separated_word)
-            # with return placed here i getting R1710 error from pylint
-            # could you please advise on how to solve it?
-            return split_list
+    while separator in to_split:
+        separators_location = to_split.find(separator, 0, -1)
+        separated_word = to_split[:separators_location]
+        split_list.append(separated_word)
+        to_split = to_split[separators_location + separator_len:]
+        if separator not in to_split:
+            split_list.append(to_split)
+
+    return split_list
 
 
 def test_words_with_sep():
@@ -44,5 +41,11 @@ def test_two_chars_and_separator():
 
 def test_without_separator():
     """Test function without separator provided."""
+    assert my_splitter("string with !@#$double spaces") == \
+           ["string", "with", "!@#$double", "spaces"]
+
+
+def test_double_spaces():
+    """Test function with a string that contains two spaces in a row"""
     assert my_splitter("string  with  !@#$double  spaces") == \
            ["string", "with", "!@#$double", "spaces"]
