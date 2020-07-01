@@ -11,13 +11,12 @@ def my_splitter(to_split, separator=None):
         return split_list_regex.findall(to_split)
 
     split_list = []
-    separator_len = len(separator)
 
     while separator in to_split:
-        separators_location = to_split.find(separator, 0, -1)
+        separators_location = to_split.find(separator, 0)
         separated_word = to_split[:separators_location]
         split_list.append(separated_word)
-        to_split = to_split[separators_location + separator_len:]
+        to_split = to_split[separators_location + len(separator):]
         if separator not in to_split:
             split_list.append(to_split)
 
@@ -41,11 +40,18 @@ def test_two_chars_and_separator():
 
 def test_without_separator():
     """Test function without separator provided."""
-    assert my_splitter("string with !@#$double spaces") == \
+    assert my_splitter("string  with  !@#$double  spaces") == \
            ["string", "with", "!@#$double", "spaces"]
 
 
 def test_double_spaces():
-    """Test function with a string that contains two spaces in a row"""
-    assert my_splitter("string  with  !@#$double  spaces") == \
-           ["string", "with", "!@#$double", "spaces"]
+    """Test function with with string with double spaces and space
+    as a separator"""
+    assert my_splitter("string  with  !@#$double  spaces", " ") == \
+           ["string", "", "with", "", "!@#$double", "", "spaces"]
+
+
+def test_string_ends_with_sep():
+    """Test function with string that end with separator"""
+    assert my_splitter("aaa,bbb,", ",") == ["aaa", "bbb", ""]
+
