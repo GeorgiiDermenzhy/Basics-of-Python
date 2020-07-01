@@ -18,8 +18,7 @@ def my_splitter(to_split, separator=None):
         split_list.append(separated_word)
         to_split = to_split[separators_location + len(separator):]
 
-    if separator not in to_split:
-        split_list.append(to_split)
+    split_list.append(to_split)
 
     return split_list
 
