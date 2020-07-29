@@ -3,3 +3,12 @@ pydocstyle
 flake8
 pytest
 pyinputplus
+pathlib
+askdirectory
+os
+openpyxl
+csv
+askopenfilename
+ezsheets
+PyPDF2
+shutil
