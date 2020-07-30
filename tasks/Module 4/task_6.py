@@ -14,13 +14,12 @@ def brute_force_pdf():
     dict_file = askopenfilename(title='Select encrypted Dictionary file')
     dict_file_path = Path(dict_file)
 
-    with open(dict_file_path, "r") as dict_file_content:
-        with open(pwd_file_path.name, 'rb') as pdf_content:
-            pdf_reader = PyPDF2.PdfFileReader(pdf_content)
-            for word in dict_file_content:
-                if pdf_reader.decrypt(word) or pdf_reader.decrypt(word.lower()):
-                    print(word)
-                    break
+    with open(dict_file_path, "r") as dict_file_content, open(pwd_file_path.name, 'rb') as pdf_content:
+        pdf_reader = PyPDF2.PdfFileReader(pdf_content)
+        for word in dict_file_content:
+            if pdf_reader.decrypt(word) or pdf_reader.decrypt(word.lower()):
+                print(word)
+                break
 
 
 brute_force_pdf()
