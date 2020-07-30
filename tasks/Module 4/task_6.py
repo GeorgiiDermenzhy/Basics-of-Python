@@ -17,7 +17,11 @@ def brute_force_pdf():
     with open(dict_file_path, "r") as dict_file_content, open(pwd_file_path.name, 'rb') as pdf_content:
         pdf_reader = PyPDF2.PdfFileReader(pdf_content)
         for word in dict_file_content:
-            if pdf_reader.decrypt(word) or pdf_reader.decrypt(word.lower()):
+            if pdf_reader.decrypt(word):
+                print(word)
+                break
+            else:
+                pdf_reader.decrypt(word.lower())
                 print(word)
                 break
 
