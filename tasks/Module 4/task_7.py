@@ -24,9 +24,7 @@ def excel_to_csv_converter():
                 with open(destination, "w", newline='') as csv_file:
                     csv_writer = csv.writer(csv_file)
                     for row in ws.rows:
-                        row_data = []
-                        for cell in row:
-                            row_data.append(cell.value)
+                        row_data = [cell.value for cell in row]
                         csv_writer.writerow(row_data)
 
 
