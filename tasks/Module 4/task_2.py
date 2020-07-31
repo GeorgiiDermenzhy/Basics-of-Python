@@ -10,30 +10,23 @@ def filling_in_the_gaps():
     in a single folder and fill in any gaps in the numbering.
     """
     dir_path = askdirectory(title='Select Folder with spam* files')
-    digit = 1
-    dozen = 0
-    hundred = 0
+    iter = 1
 
     os.chdir(dir_path)
 
-    for file in os.listdir(dir_path):
+    for file in sorted(os.listdir(dir_path)):
         file_path = Path(file)
+
         files_number = file_path.stem[4:7]
-        expected_numbers = str(hundred) + str(dozen) + str(digit)
+        file_prefix = file_path.stem[:4]
 
-        if files_number != expected_numbers:
-            os.rename(file_path, "spam" + expected_numbers + ".txt")
-            digit += 1
+        expected_number = str(iter).zfill(3)
 
-            if digit > 9:
-                digit = 0
-                dozen += 1
-
-            if dozen > 9:
-                dozen = 0
-                hundred += 1
+        if files_number != expected_number:
+            os.rename(file, file_prefix + expected_number + ".txt")
+            iter += 1
         else:
-            digit += 1
+            iter += 1
 
 
 filling_in_the_gaps()
