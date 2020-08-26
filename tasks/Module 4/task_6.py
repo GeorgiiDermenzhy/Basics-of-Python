@@ -22,7 +22,7 @@ def brute_force_pdf():
                 break
             else:
                 pdf_reader.decrypt(word.lower())
-                print(word)
+                print(word.lower())
                 break
 
 

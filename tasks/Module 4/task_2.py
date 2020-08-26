@@ -14,19 +14,18 @@ def filling_in_the_gaps():
 
     os.chdir(dir_path)
 
-    for file in sorted(os.listdir(dir_path)):
+    for index, file in enumerate(sorted(os.listdir(dir_path)), start=1):
         file_path = Path(file)
 
         files_number = file_path.stem[4:7]
         file_prefix = file_path.stem[:4]
 
-        expected_number = str(iter).zfill(3)
+        expected_number = str(index).zfill(3)
 
         if files_number != expected_number:
             os.rename(file, file_prefix + expected_number + ".txt")
-            iter += 1
-        else:
-            iter += 1
+
+        index += 1
 
 
 filling_in_the_gaps()
