@@ -3,3 +3,6 @@ pydocstyle
 flake8
 pytest
 pyinputplus
+openpyxl
+ezsheets
+PyPDF2
